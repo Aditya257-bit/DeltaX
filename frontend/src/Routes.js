@@ -10,6 +10,10 @@ import AdminRoute from './auth/AdminRoute';
 import Admin from './core/Admin';
 import ForgotPassword from './auth/ForgotPassword';
 import ResetPassword from './auth/ResetPassword';
+import Lead from './core/Lead';
+import CreateLead from './core/CreateLead';
+import CreateStatus from './core/CreateStatus';
+import UpdateLead from './core/UpdateLead';
 
 const Routes = () => {
     return(
@@ -23,6 +27,10 @@ const Routes = () => {
                 <AdminRoute exact path='/admin' component={Admin} /> 
                 <Route exact path="/auth/forgot/password" component={ForgotPassword} /> 
                 <Route exact path="/auth/reset/password/:token" component={ResetPassword} /> 
+                <Route exact path='/leads' component={Lead} />
+                <Route exact path='/create-lead' component={CreateLead} />
+                <Route exact path='/create-status' component={CreateStatus} />
+                <Route exact path='/lead/:id' component={UpdateLead} />
             </Switch>
         </BrowserRouter>
     )

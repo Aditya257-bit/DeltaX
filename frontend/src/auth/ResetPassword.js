@@ -4,6 +4,7 @@ import axios from 'axios';
 import jwt from "jsonwebtoken";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
+import '../styles/signin.css';
 
 const ResetPassword = ({match}) => {
 
@@ -45,23 +46,26 @@ const ResetPassword = ({match}) => {
     }
 
     const resetPasswordForm = () => {
-        return(
-            <form>
-                <div className='form-group mt-3'>
-                    <label className='text-muted'>Password</label>
-                    <input 
-                        type='password' 
-                        className='form-control' 
-                        name='newPassword'
-                        value={newPassword}
-                        onChange={handleChange} 
-                        placeholder='Enter your password' 
-                    />
+        return (
+            <div className="main_div">
+                <div className="box">
+                    <h1>Reset Password</h1>
+                    <form>
+                        <div className="inputBox">
+                            <input
+                                type='password' 
+                                className='form-control' 
+                                name='newPassword'
+                                value={newPassword}
+                                onChange={handleChange} 
+                                required
+                            />
+                            <label>Password</label>
+                        </div>
+                        <button type='submit' onClick={handleSubmit}>{buttonText}</button>
+                    </form>
                 </div>
-                <div className='mt-3'>
-                    <button className='btn btn-primary' onClick={handleSubmit}>{buttonText}</button>
-                </div>
-            </form>
+            </div>
         )
     }
 

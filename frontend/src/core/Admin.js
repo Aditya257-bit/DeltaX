@@ -10,11 +10,10 @@ const Admin = ({history}) => {
     const [values, setValues] = useState({
         name: '',
         email: '',
-        password: '',
         role: ''
     })
 
-    const { name, email, password, role } = values;
+    const { name, email, role } = values;
 
     const token = getCookie('token');
 
@@ -44,56 +43,49 @@ const Admin = ({history}) => {
         })
     }
 
-    const adminPageForm = () => (
-        <form>
-            <div className="form-group mt-3">
-                <label className='text-muted'>Name</label>
-                <input 
-                    type='text' 
-                    className='form-control' 
-                    name='name' 
-                    value={name}
-                    placeholder='Enter your name' 
-                />
+    const adminPageForm = () => {
+        return (
+            <div className="main_div">
+                <div className="box">
+                    <h1>Admin Dashboard</h1>
+                    <form>
+                        <div className="inputBox">
+                            <input 
+                                type='text'
+                                name='name'
+                                value={name}
+                                required
+                            />
+                            <label>Name</label>
+                        </div>
+                        <div className="inputBox">
+                            <input 
+                                type='email'
+                                name='email'
+                                value={email}
+                                required
+                            />
+                            <label>Email</label>
+                        </div>
+                        <div className="inputBox">
+                            <input 
+                                type='text'
+                                name='role'
+                                value={role}
+                                required
+                            />
+                            <label>Role</label>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div className="form-group mt-3">
-                <label className='text-muted'>Email</label>
-                <input 
-                    type='email' 
-                    className='form-control' 
-                    name='email' 
-                    value={email}
-                    placeholder='Enter your email' 
-                />
-            </div>
-            <div className="form-group mt-3">
-                <label className='text-muted'>Password</label>
-                <input 
-                    type='password' 
-                    className='form-control' 
-                    name='password' 
-                    value={password}
-                    placeholder='Enter your password' 
-                />
-            </div>
-            <div className="form-group mt-3">
-                <label className='text-muted'>Role</label>
-                <input 
-                    type='text' 
-                    className='form-control' 
-                    name='role' 
-                    value={role}
-                    placeholder='Enter your Role' 
-                />
-            </div>
-        </form>
-    )
+        )
+    }
 
     return(
         <Layout>
             <div className='mt-3 col-md-6 offset-md-3'>
                 <ToastContainer />         
-                <h1 classNam='p-5'>Admin</h1>
                 {adminPageForm()}
             </div>
         </Layout>

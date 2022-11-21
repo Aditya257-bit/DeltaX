@@ -12,10 +12,11 @@ const Signup = () => {
         name: '',
         email: '',
         password: '',
+        confirmPassword: '',
         buttonText: 'Sign Up'
     })
 
-    const { name, email, password, buttonText } = values;
+    const { name, email, password, confirmPassword, buttonText } = values;
 
     const handleChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value});
@@ -27,9 +28,9 @@ const Signup = () => {
         axios({
             method: 'POST',
             url: `${process.env.REACT_APP_URL}/signup`,
-            data: { name, email, password }
+            data: { name, email, password, confirmPassword }
         }).then((resp) => {
-            setValues({...values, name: '', email: '', password: '', buttonText: 'Submitted'});
+            setValues({...values, name: '', email: '', password: '', confirmPassword: '', buttonText: 'Submitted'});
             toast.success(resp.data.message);
         }).catch((error) => {
             setValues({...values, buttonText: 'Submit'});
@@ -37,53 +38,64 @@ const Signup = () => {
         })
     }
 
-    const signupForm = () => (
-        <form>
-            <div className="form-group mt-3">
-                <label className='text-muted'>Name</label>
-                <input 
-                    type='text' 
-                    className='form-control' 
-                    name='name' 
-                    value={name}
-                    onChange={handleChange} 
-                    placeholder='Enter your name' 
-                />
+    const signupForm = () => {
+        return (
+            <div className="main_div">
+                <div className="box">
+                    <h1>Signup</h1>
+                    <form>
+                        <div className="inputBox">
+                            <input 
+                                type='text'
+                                name='name' 
+                                value={name}
+                                onChange={handleChange} 
+                                required
+                            />
+                            <label> Name</label>
+                        </div>
+                        <div className="inputBox">
+                            <input 
+                                type='text'
+                                name='email' 
+                                value={email}
+                                onChange={handleChange} 
+                                required
+                            />
+                            <label>Email</label>
+                        </div>
+                        <div className="inputBox">
+                            <input 
+                                type='password'
+                                name='password'
+                                value={password}
+                                onChange={handleChange} 
+                                required
+                            />
+                            <label>Password</label>
+                        </div>
+                        <div className="inputBox">
+                            <input 
+                                type='password'
+                                name='confirmPassword'
+                                value={confirmPassword}
+                                onChange={handleChange} 
+                                required
+                            />
+                            <label>Confirm Password</label>
+                        </div>
+                        <button type='submit' onClick={handleSubmit}>{buttonText}</button>
+                    </form>
+                </div>
             </div>
-            <div className="form-group mt-3">
-                <label className='text-muted'>Email</label>
-                <input 
-                    type='email' 
-                    className='form-control' 
-                    name='email' 
-                    value={email}
-                    onChange={handleChange} 
-                    placeholder='Enter your email' 
-                />
-            </div>
-            <div className="form-group mt-3">
-                <label className='text-muted'>Password</label>
-                <input 
-                    type='password' 
-                    className='form-control' 
-                    name='password' 
-                    value={password}
-                    onChange={handleChange} 
-                    placeholder='Enter your password' 
-                />
-            </div>
-            <div className='mt-3'>
-                <button className='btn btn-primary' onClick={handleSubmit}>{buttonText}</button>
-            </div>
-        </form>
-    )
+        )
+    }
 
     return(
         <Layout>
             <div className='mt-6 col-md-6 offset-md-3'>
                 <ToastContainer />      
                 {isAuth() ? <Redirect to='/' /> : null}     
-                <h1 className='p-5'>Signup</h1>
                 {signupForm()}
             </div>
         </Layout>

@@ -21,8 +21,8 @@ exports.signup = async (req, res) => {
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                  user: 'adityakadam423@gmail.com',
-                  pass: 'zplnlsoysztamanh'
+                  user: 'aditya.k@trikatechnologies.com',
+                  pass: 'uezqkxskicwrvcmd'
                 }
             });
             var mailOptions = {
@@ -50,6 +50,7 @@ exports.signup = async (req, res) => {
               });
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             error: "Something went wrong!!"
         })

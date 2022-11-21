@@ -34,23 +34,25 @@ const ForgotPassword = () => {
     }
 
     const forgotPasswordForm = () => {
-        return(
-            <form>
-                <div className='form-group mt-3'>
-                    <label className='text-muted'>Email</label>
-                    <input 
-                        type='email' 
-                        className='form-control' 
-                        name='email'
-                        value={email}
-                        onChange={handleChange} 
-                        placeholder='Enter your email' 
-                    />
+        return (
+            <div className="main_div">
+                <div className="box">
+                    <h1>Forgot Password</h1>
+                    <form>
+                        <div className="inputBox">
+                            <input 
+                                type='email'
+                                name='email'
+                                value={email}
+                                onChange={handleChange} 
+                                required
+                            />
+                            <label>Email</label>
+                        </div>
+                        <button type='submit' onClick={handleSubmit}>{buttonText}</button>
+                    </form>
                 </div>
-                <div className='mt-3'>
-                    <button className='btn btn-primary' onClick={handleSubmit}>{buttonText}</button>
-                </div>
-            </form>
+            </div>
         )
     }
 
@@ -58,7 +60,6 @@ const ForgotPassword = () => {
         <Layout>
             <div className='mt-3 col-md-6 offset-md-3'>
                 <ToastContainer />
-                <h1>Forgot Password</h1>
                 {forgotPasswordForm()}
             </div>
         </Layout>

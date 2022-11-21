@@ -8,19 +8,19 @@ import 'react-toastify/dist/ReactToastify.min.css';
 const Signin = ({match}) => {
 
     const [values, setValues] = useState({
-        name: '',
+        firstName: '',
         token: ''
     })
 
     useEffect(() => {
         let token = match.params.token;
-        let { name } = jwt.decode(token);
+        let { firstName } = jwt.decode(token);
         if(token){
-            setValues({...values, name, token})
+            setValues({...values, firstName, token})
         }
     }, []);
 
-    const { name, token } = values;
+    const { firstName, token } = values;
 
 
     const handleSubmit= (e) => {
@@ -38,9 +38,11 @@ const Signin = ({match}) => {
 
     const activateAccount = () => {
         return(
-            <div>
-                <h1 className='p-5 text-center'>Hey {name}, click on below button to activate your account</h1>
-                <button className='btn btn-outline-primary' onClick={handleSubmit}>Activate-Account</button>
+            <div className="main_div">
+                <div className="box">
+                    <h1>Hey {firstName}, click on below button to activate your account</h1>
+                    <button type='submit' onClick={handleSubmit}>Activate-Account</button>
+                </div>
             </div>
         )
     }
